@@ -15,6 +15,7 @@ from zerollm.agent import Agent, SharedContext
 from zerollm.server import Server
 from zerollm.finetune import FineTuner
 from zerollm.rag import RAG
+from zerollm.embed import Embed
 
 __all__ = [
     "Chat",
@@ -23,4 +24,5 @@ __all__ = [
     "Server",
     "FineTuner",
     "RAG",
+    "Embed",
 ]

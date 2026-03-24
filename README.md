@@ -34,6 +34,12 @@ That's it. No config files, no model format headaches, no GPU drivers to manage.
 pip install zerollm-kit
 ```
 
+Or install the latest development version directly from GitHub:
+
+```bash
+pip install git+https://github.com/TechyNilesh/ZeroLLM.git
+```
+
 ## Quick Start
 
 ### Chat
@@ -235,6 +241,18 @@ agent.ask("What does our policy say about returns?")
 ```
 
 Powered by SQLite + sqlite-vec hybrid search. No external database needed.
+
+### Embeddings
+
+```python
+from zerollm import Embed
+
+emb = Embed()  # default: all-MiniLM-L6-v2
+vector = emb.encode("Hello world")
+vectors = emb.encode(["cats are great", "dogs are loyal"])
+score = emb.similarity("cats are great", "dogs are loyal")
+print(f"Similarity: {score:.3f}")
+```
 
 ## CLI
 
